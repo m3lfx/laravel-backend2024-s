@@ -13,7 +13,7 @@
             <input type="text" id='itemSearch' placeholder="--search--">
         </div>
         <div class="table-responsive">
-            <table id="itable" class="table table-striped table-hover">
+            <table id="ctable" class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th>customer ID</th>
