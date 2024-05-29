@@ -56,6 +56,7 @@ $(document).ready(function () {
                 tr.append($("<td>").html(data.customer.addressline));
                 tr.append("<td align='center'><a href='#' data-toggle='modal' data-target='#itemModal' id='editbtn' data-id=" + data.customer.customer_id + "><i class='fa fa-pencil-square-o' aria-hidden='true' style='font-size:24px' ></a></i></td>");
                 tr.append("<td><a href='#'  class='deletebtn' data-id=" + data.customer.customer_id + "><i  class='fa fa-trash-o' style='font-size:24px; color:red' ></a></i></td>");
+                $("#cbody").prepend(tr);
 
             },
             error: function (error) {
