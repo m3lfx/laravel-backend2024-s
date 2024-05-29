@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\User;
+use Storage;
 
 class CustomerController extends Controller
 {
@@ -38,11 +40,11 @@ class CustomerController extends Controller
         $user->save();
         $customer = new Customer();
         $customer->user_id = $user->id;
-        $customer->title = $request->title;
+        
         $customer->lname = $request->lname;
         $customer->fname = $request->fname;
         $customer->addressline = $request->addressline;
-        $customer->town = $request->town;
+        
         $customer->zipcode = $request->zipcode;
         $customer->phone = $request->phone;
         $files = $request->file('uploads');

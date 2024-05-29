@@ -8,7 +8,7 @@ $(document).ready(function () {
             $.each(data, function (key, value) {
                 console.log(value);
                 id = value.customer_id;
-                
+
                 var tr = $("<tr>");
                 tr.append($("<td>").html(value.customer_id));
                 tr.append($("<td>").html(value.fname));
@@ -36,7 +36,7 @@ $(document).ready(function () {
         }
         $.ajax({
             type: "POST",
-            url: "http://localhost:8000/api/customers",
+            url: "/api/customers",
             data: formData,
             contentType: false,
             processData: false,
@@ -45,9 +45,18 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 $("#customerModal").modal("hide");
-                var $ctable = $('#ctable').DataTable();
-                // $itable.row.add(data.results).draw(false);
-                $ctable.ajax.reload()
+
+
+                var img = "<img src=" + data.customer.image_path + " width='200px', height='200px'/>";
+                var tr = $("<tr>");
+                tr.append($("<td>").html(data.customer.customer_id));
+                tr.append($("<td>").html(img));
+                tr.append($("<td>").html(data.customer.lname.description));
+                tr.append($("<td>").html(data.customer.fname));
+                tr.append($("<td>").html(data.customer.addressline));
+                tr.append("<td align='center'><a href='#' data-toggle='modal' data-target='#itemModal' id='editbtn' data-id=" + data.customer.customer_id + "><i class='fa fa-pencil-square-o' aria-hidden='true' style='font-size:24px' ></a></i></td>");
+                tr.append("<td><a href='#'  class='deletebtn' data-id=" + data.customer.customer_id + "><i  class='fa fa-trash-o' style='font-size:24px; color:red' ></a></i></td>");
+
             },
             error: function (error) {
                 console.log(error);

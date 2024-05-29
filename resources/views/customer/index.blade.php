@@ -45,10 +45,7 @@
                       <label for="customerId" class="control-label">customer id</label>
                       <input type="text" class="form-control" id="customerId" name="customer_id" readonly>
                     </div>
-                <div class="form-group">
-                  <label for="desc" class="control-label">title</label>
-                  <input type="text" class="form-control" id="title" name="title">
-                </div>
+                
                 <div class="form-group">
                   <label for="lname" class="control-label">last name</label>
                   <input type="text" class="form-control " id="lname" name="lname">
@@ -61,10 +58,7 @@
                   <label for="address" class="control-label">address</label>
                   <input type="text" class="form-control " id="address" name="addressline">
                 </div>
-                <div class="form-group">
-                  <label for="town" class="control-label">town</label>
-                  <input type="text" class="form-control " id="town" name="town">
-                </div>
+                
                 <div class="form-group">
                   <label for="zipcode" class="control-label">zipcode</label>
                   <input type="text" class="form-control " id="zipcode" name="zipcode">
