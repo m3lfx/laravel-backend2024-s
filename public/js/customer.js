@@ -95,6 +95,7 @@ $(document).ready(function () {
     });
 
     $("#customerUpdate").on('click', function (e) {
+        e.preventDefault
         var id = $('#customerId').val();
         var $row = $('tr td > a[data-id="' + id + '"]').closest('tr');
         console.log($row)
@@ -121,7 +122,7 @@ $(document).ready(function () {
                 tr.append($("<td>").html(data.customer.lname));
                 tr.append($("<td>").html(data.customer.fname));
                 tr.append($("<td>").html(data.customer.addressline));
-                tr.append("<td align='center'><a href='#' data-toggle='modal' data-target='#itemModal' id='editbtn' data-id=" + data.customer.customer_id + "><i class='fas fa-edit' aria-hidden='true' style='font-size:24px' ></a></i></td>");
+                tr.append("<td align='center'><a href='#' data-toggle='modal' data-target='#customerModal' id='editbtn' data-id=" + data.customer.customer_id + "><i class='fas fa-edit' aria-hidden='true' style='font-size:24px' ></a></i></td>");
                 tr.append("<td><a href='#'  class='deletebtn' data-id=" + data.customer.customer_id + "><i  class='fa fa-trash' style='font-size:24px; color:red' ></a></i></td>");
                 $('#ctable').prepend(tr.hide().fadeIn(5000));
             },

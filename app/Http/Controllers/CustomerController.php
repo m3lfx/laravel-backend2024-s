@@ -15,7 +15,7 @@ class CustomerController extends Controller
     public function index()
     {
         $data = Customer::orderBy('customer_id', 'DESC')->get();
-      
+
         return response()->json($data);
     }
 
@@ -40,11 +40,11 @@ class CustomerController extends Controller
         $user->save();
         $customer = new Customer();
         $customer->user_id = $user->id;
-        
+
         $customer->lname = $request->lname;
         $customer->fname = $request->fname;
         $customer->addressline = $request->addressline;
-        
+
         $customer->zipcode = $request->zipcode;
         $customer->phone = $request->phone;
         $files = $request->file('uploads');
@@ -86,8 +86,8 @@ class CustomerController extends Controller
     public function update(Request $request, string $id)
     {
         $customer = Customer::find($id);
-        $user = User::where('id', $customer->user_id);
-       
+        $user = User::where('id', $customer->user_id)->first();
+        // dd($request->email);
         $customer->lname = $request->lname;
         $customer->fname = $request->fname;
         $customer->addressline = $request->addressline;
@@ -96,12 +96,12 @@ class CustomerController extends Controller
         $files = $request->file('uploads');
         $customer->image_path = 'storage/images/' . $files->getClientOriginalName();
         $customer->save();
-
+        $user->name = $request->fname . ' ' . $request->lname;
         $user->email = $request->email;
-        $user->password_get_info = $request->password;
+        $user->password = bcrypt($request->password);
         $user->save();
 
-        
+
         Storage::put(
             'public/images/' . $files->getClientOriginalName(),
             file_get_contents($files)
