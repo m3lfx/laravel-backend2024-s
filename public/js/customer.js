@@ -83,6 +83,8 @@ $(document).ready(function () {
                    $("#zipcode").val(data.zipcode);
                    $("#phone").val(data.phone); 
                    $("#email").val(data.user.email);
+                   $("#cform").append(`<img src=" ${data.image_path}" width='200px', height='200px'  />`)
+                   
                    
               },
              error: function(){
@@ -90,6 +92,43 @@ $(document).ready(function () {
               alert("error");
               }
           });
+    });
+
+    $("#customerUpdate").on('click', function (e) {
+        var id = $('#customerId').val();
+        var $row = $('tr td > a[data-id="' + id + '"]').closest('tr');
+        console.log($row)
+        var data = $('#cform')[0];
+        let formData = new FormData($('#cform')[0]);
+        formData.append('_method', 'PUT')
+        $.ajax({
+            type: "POST",
+            url: `/api/customers/${id}`,
+            data: formData,
+            contentType: false,
+            processData: false,
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                
+                $('#customerModal').modal('hide')
+                $row.remove()
+                var img = "<img src=" + data.customer.image_path + " width='200px', height='200px'/>";
+                var tr = $("<tr>");
+                tr.append($("<td>").html(data.customer.customer_id));
+                tr.append($("<td>").html(img));
+                tr.append($("<td>").html(data.customer.lname));
+                tr.append($("<td>").html(data.customer.fname));
+                tr.append($("<td>").html(data.customer.addressline));
+                tr.append("<td align='center'><a href='#' data-toggle='modal' data-target='#itemModal' id='editbtn' data-id=" + data.customer.customer_id + "><i class='fas fa-edit' aria-hidden='true' style='font-size:24px' ></a></i></td>");
+                tr.append("<td><a href='#'  class='deletebtn' data-id=" + data.customer.customer_id + "><i  class='fa fa-trash' style='font-size:24px; color:red' ></a></i></td>");
+                $('#ctable').prepend(tr.hide().fadeIn(5000));
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
     });
 
     $('#ctable tbody').on('click', 'a.deletebtn', function (e) {

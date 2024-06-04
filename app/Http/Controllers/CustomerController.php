@@ -85,7 +85,33 @@ class CustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $customer = Customer::find($id);
+        $user = User::where('id', $customer->user_id);
+       
+        $customer->lname = $request->lname;
+        $customer->fname = $request->fname;
+        $customer->addressline = $request->addressline;
+        $customer->zipcode = $request->zipcode;
+        $customer->phone = $request->phone;
+        $files = $request->file('uploads');
+        $customer->image_path = 'storage/images/' . $files->getClientOriginalName();
+        $customer->save();
+
+        $user->email = $request->email;
+        $user->password_get_info = $request->password;
+        $user->save();
+
+        
+        Storage::put(
+            'public/images/' . $files->getClientOriginalName(),
+            file_get_contents($files)
+        );
+
+        return response()->json([
+            "success" => "customer update successfully.",
+            "customer" => $customer,
+            "status" => 200
+        ]);
     }
 
     /**
