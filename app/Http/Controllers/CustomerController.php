@@ -68,7 +68,7 @@ class CustomerController extends Controller
      */
     public function show(string $id)
     {
-        $customer = Customer::find($id);
+        $customer = Customer::with('user')->where('customer_id', $id)->first();
         return response()->json($customer);
     }
 

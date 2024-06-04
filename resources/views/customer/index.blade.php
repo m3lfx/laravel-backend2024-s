@@ -52,7 +52,7 @@
                   <input type="text" class="form-control " id="lname" name="lname">
                 </div>
                 <div class="form-group">
-                  <label for="cost" class="control-label">first name</label>
+                  <label for="fname" class="control-label">first name</label>
                   <input type="text" class="form-control " id="fname" name="fname">
                 </div>
                 <div class="form-group">

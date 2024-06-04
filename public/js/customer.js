@@ -65,8 +65,9 @@ $(document).ready(function () {
     });
 
     $('#customerModal').on('show.bs.modal', function(e) {
-        $("#iform").trigger("reset");
-        $('#itemid').remove()
+        $("#cform").trigger("reset");
+        $('#customerId').remove()
+        console.log(e.relatedTarget)
         var id = $(e.relatedTarget).attr('data-id');
         console.log(id);
         $('<input>').attr({type: 'hidden', id:'customerId',name: 'customer_id',value: id}).appendTo('#cform');
@@ -77,8 +78,11 @@ $(document).ready(function () {
                    // console.log(data);
                    $("#customerId").val(data.customer_id);
                    $("#lname").val(data.lname);
-                //    $("#cost").val(data.cost_price);
-                //    $("#image").val(data.image_path);
+                   $("#fname").val(data.fname);
+                   $("#address").val(data.addressline);
+                   $("#zipcode").val(data.zipcode);
+                   $("#phone").val(data.phone); 
+                   $("#email").val(data.user.email);
                    
               },
              error: function(){
