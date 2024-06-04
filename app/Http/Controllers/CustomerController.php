@@ -119,6 +119,9 @@ class CustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $customer = Customer::findOrFail($id);
+        $customer->delete();
+		$data = array('success' => 'deleted','code'=>200);
+        return response()->json($data);
     }
 }
