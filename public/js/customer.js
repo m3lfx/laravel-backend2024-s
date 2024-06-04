@@ -46,8 +46,6 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 $("#customerModal").modal("hide");
-
-
                 var img = "<img src=" + data.customer.image_path + " width='200px', height='200px'/>";
                 var tr = $("<tr>");
                 tr.append($("<td>").html(data.customer.customer_id));
@@ -55,8 +53,8 @@ $(document).ready(function () {
                 tr.append($("<td>").html(data.customer.lname));
                 tr.append($("<td>").html(data.customer.fname));
                 tr.append($("<td>").html(data.customer.addressline));
-                tr.append("<td align='center'><a href='#' data-toggle='modal' data-target='#itemModal' id='editbtn' data-id=" + data.customer.customer_id + "><i class='fa fa-pencil-square-o' aria-hidden='true' style='font-size:24px' ></a></i></td>");
-                tr.append("<td><a href='#'  class='deletebtn' data-id=" + data.customer.customer_id + "><i  class='fa fa-trash-o' style='font-size:24px; color:red' ></a></i></td>");
+                tr.append("<td align='center'><a href='#' data-toggle='modal' data-target='#customerModal' id='editbtn' data-id=" + data.customer.customer_id + "><i class='fas fa-edit' aria-hidden='true' style='font-size:24px' ></a></i></td>");
+                tr.append("<td><a href='#'  class='deletebtn' data-id=" + data.customer.customer_id + "><i  class='fa fa-trash' style='font-size:24px; color:red' ></a></i></td>");
                 $("#cbody").prepend(tr);
 
             },
