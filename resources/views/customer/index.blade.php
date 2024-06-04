@@ -19,9 +19,10 @@
                 <thead>
                     <tr>
                         <th>customer ID</th>
+                        <th>image</th>
                         <th>lname</th>
                         <th>fname</th>
-                        <th>lname</th>
+                        
                         <th>addressline</th>
                         <th>Edit</th>
                         <th>Delete</th>
@@ -36,7 +37,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">Create new customer</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <form id="cform" method="#" action="#" enctype="multipart/form-data">
