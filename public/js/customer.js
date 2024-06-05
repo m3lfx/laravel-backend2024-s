@@ -67,9 +67,11 @@ $(document).ready(function () {
     $('#customerModal').on('show.bs.modal', function(e) {
         $("#cform").trigger("reset");
         $('#customerId').remove()
+        $('#image').remove()
         console.log(e.relatedTarget)
         var id = $(e.relatedTarget).attr('data-id');
         console.log(id);
+       
         $('<input>').attr({type: 'hidden', id:'customerId',name: 'customer_id',value: id}).appendTo('#cform');
         $.ajax({
             type: "GET",
@@ -83,7 +85,7 @@ $(document).ready(function () {
                    $("#zipcode").val(data.zipcode);
                    $("#phone").val(data.phone); 
                    $("#email").val(data.user.email);
-                   $("#cform").append(`<img src=" ${data.image_path}" width='200px', height='200px'  />`)
+                   $("#cform").append(`<img src=" ${data.image_path}" width='200px', height='200px' id="image"   />`)
                    
                    
               },

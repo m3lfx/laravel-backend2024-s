@@ -45,6 +45,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     {{-- <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script> --}}
     <script src="{{ asset('js/customer.js') }}"></script>
+    <script src="{{ asset('js/item.js') }}"></script>
     {{-- <link rel="stylesheet" href="{{ url('/css/app.css') }}"> --}}
     @yield('styles')
 </head>
