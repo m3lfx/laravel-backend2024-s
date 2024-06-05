@@ -78,7 +78,7 @@
                 </div>
                 <div class="form-group">
                   <label for="image" class="control-label">Image</label>
-                  <input type="file" class="form-control" id="image" name="uploads" />
+                  <input type="file" class="form-control" id="image_upload" name="uploads" />
                 </div>
               </form>
             </div>

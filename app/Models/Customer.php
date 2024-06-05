@@ -18,6 +18,7 @@ class Customer extends Model
         'addressline',
         'phone',
         'zipcode',
+        'image_path'
     ];
     public function user()
     {

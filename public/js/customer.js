@@ -101,7 +101,7 @@ $(document).ready(function () {
         var id = $('#customerId').val();
         var $row = $('tr td > a[data-id="' + id + '"]').closest('tr');
         console.log($row)
-        var data = $('#cform')[0];
+        // var data = $('#cform')[0];
         let formData = new FormData($('#cform')[0]);
         formData.append('_method', 'PUT')
         $.ajax({
