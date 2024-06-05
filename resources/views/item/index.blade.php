@@ -14,8 +14,8 @@
          <th>description</th>
          <th>sell price</th>
          <th>cost price</th>
-         <th>Edit</th>
-         <th>Delete</th>
+         <th>action</th>
+         
          </tr>
      </thead>
      <tbody id="ibody">

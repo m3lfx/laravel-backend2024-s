@@ -1,7 +1,7 @@
 $(document).ready(function () {
     $('#itable').DataTable({
         ajax: {
-            url: "http://localhost:8000/api/items",
+            url: "/api/items",
             dataSrc: ""
         },
         dom: 'Bfrtip',
@@ -9,16 +9,17 @@ $(document).ready(function () {
             'pdf',
             'excel',
             {
-                text: 'Add customer',
+                text: 'Add item',
                 className: 'btn btn-primary',
                 action: function (e, dt, node, config) {
-                    $("#cform").trigger("reset");
-                    $('#customerModal').modal('show');
-                    $('#customerUpdate').hide();
+                    $("#iform").trigger("reset");
+                    $('#itemModal').modal('show');
+                    $('#itemUpdate').hide();
                 }
             }
         ],
         columns: [
+            { data: 'item_id' },
             {
                 data: null,
                 render: function (data, type, row) {
@@ -27,12 +28,12 @@ $(document).ready(function () {
                     return `<img src=${data.image_path}  width="50" height="60">`;
                 }
             },
-            { data: 'item_id' },
+            
             { data: 'description' },
             { data: 'cost_price' },
             { data: 'sell_price' },
            
-            // { data: 'email' },
+            
             {
                 data: null,
                 render: function (data, type, row) {

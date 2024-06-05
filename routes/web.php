@@ -18,4 +18,4 @@ Route::get('/', function () {
 });
 
 Route::view('/customer-all', 'customer.index');
-Route::view('/item-all', 'item.index');
+Route::view('/item', 'item.index');
