@@ -25,7 +25,7 @@ $(document).ready(function () {
                 render: function (data, type, row) {
                     console.log(data.image_path)
                     // return `<img src="/storage/${data.img_path}"  width="50" height="60">`; 
-                    return `<img src=${data.image_path}  width="50" height="60">`;
+                    return `<img src=${data.img_path}  width="50" height="60">`;
                 }
             },
             
