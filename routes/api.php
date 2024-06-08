@@ -18,6 +18,8 @@ use App\Http\Controllers\DashboardController;
 Route::apiResource('customers', CustomerController::class);
 Route::apiResource('items', ItemController::class);
 Route::get('/dashboard/title-chart',[DashboardController::class, 'titleChart']);
+Route::get('/dashboard/sales-chart',[DashboardController::class, 'salesChart' ]);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

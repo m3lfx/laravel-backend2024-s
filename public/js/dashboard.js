@@ -13,10 +13,26 @@ $(document).ready(function () {
                     datasets: [{
                         label: 'Number of Customers per town',
                         data: data.data,
-                        backgroundColor: ["red", "blue", "green", "blue", "red", "blue"],
-                        borderColor: ["red", "blue", "green", "blue", "red", "blue"],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(255, 159, 64, 0.2)',
+                            'rgba(255, 205, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(201, 203, 207, 0.2)'
+                          ],
+                          borderColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(255, 159, 64)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                            'rgb(54, 162, 235)',
+                            'rgb(153, 102, 255)',
+                            'rgb(201, 203, 207)'
+                          ],
                         borderWidth: 1,
-                        fillColor: "rgba(220,220,220,0.5)"
+                     
                     }]
                 },
                 options: {
@@ -35,45 +51,45 @@ $(document).ready(function () {
         }
     });
 
-    // $.ajax({
-    //     type: "GET",
-    //     url: "/api/dashboard/sales-chart",
-    //     dataType: "json",
-    //     success: function (data) {
-    //         console.log(data);
-    //         var ctx = $("#salesChart");
-    //         var myBarChart = new Chart(ctx, {
-    //             type: 'line',
-    //             data: {
-    //                 labels: data.labels,
-    //                 datasets: [{
-    //                     label: 'Monthly sales',
-    //                     data: data.data,
-    //                     backgroundColor: [
-    //                         'rgba(75, 192, 192, 0.2)',
-    //                         'rgba(255, 99, 132, 0.2)'
-    //                     ],
-    //                     borderColor: [
-    //                         'rgba(75, 192, 192, 1)',
-    //                         'rgba(255,99,132,1)'
-    //                     ],
-    //                     borderWidth: 1
-    //                 }]
-    //             },
-    //             options: {
-    //                 scales: {
-    //                   y: {
-    //                     beginAtZero: true
-    //                   }
-    //                 }
-    //               },
-    //         });
+    $.ajax({
+        type: "GET",
+        url: "/api/dashboard/sales-chart",
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            var ctx = $("#salesChart");
+            var myBarChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Monthly sales',
+                        data: data.data,
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 99, 132, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255,99,132,1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                      y: {
+                        beginAtZero: true
+                      }
+                    }
+                  },
+            });
             
-    //     },
-    //     error: function (error) {
-    //         console.log(error);
-    //     }
-    // });
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
 
     // $.ajax({
     //     type: "GET",
