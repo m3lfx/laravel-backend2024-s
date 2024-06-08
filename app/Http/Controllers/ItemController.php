@@ -38,7 +38,7 @@ class ItemController extends Controller
         $files = $request->file('uploads');
         $item->img_path = 'storage/images/'.$files->getClientOriginalName();
         $item->save();
-        $data = array('status' => 'saved');
+        
         Storage::put('public/images/'.$files->getClientOriginalName(),file_get_contents($files));
         return response()->json(["success" => "item created successfully.","item" => $item,"status" => 200]);
     }

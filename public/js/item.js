@@ -63,9 +63,9 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
                 $("#itemModal").modal("hide");
-                var $ctable = $('#itable').DataTable();
-                $itable.row.add(data.results).draw(false);
-                // $ctable.ajax.reload()
+                var $itable = $('#itable').DataTable();
+                // $itable.row.add(data.results).draw(false);
+                $itable.ajax.reload()
             },
             error: function (error) {
                 console.log(error);
