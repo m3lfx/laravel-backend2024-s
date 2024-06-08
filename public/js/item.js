@@ -23,7 +23,7 @@ $(document).ready(function () {
             {
                 data: null,
                 render: function (data, type, row) {
-                    console.log(data.image_path)
+                    console.log(data.img_path)
                     // return `<img src="/storage/${data.img_path}"  width="50" height="60">`; 
                     return `<img src=${data.img_path}  width="50" height="60">`;
                 }
@@ -64,8 +64,8 @@ $(document).ready(function () {
                 console.log(data);
                 $("#itemModal").modal("hide");
                 var $ctable = $('#itable').DataTable();
-                // $itable.row.add(data.results).draw(false);
-                $ctable.ajax.reload()
+                $itable.row.add(data.results).draw(false);
+                // $ctable.ajax.reload()
             },
             error: function (error) {
                 console.log(error);
