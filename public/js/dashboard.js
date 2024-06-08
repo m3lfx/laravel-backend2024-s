@@ -91,49 +91,49 @@ $(document).ready(function () {
         }
     });
 
-    // $.ajax({
-    //     type: "GET",
-    //     url: "/api/dashboard/items-chart",
-    //     dataType: "json",
-    //     success: function (data) {
-    //         console.log(data);
-    //         var ctx = document.getElementById("itemsChart");
-    //         var myBarChart = new Chart(ctx, {
-    //             type: 'doughnut',
-    //             data: {
-    //                 labels: data.labels,
-    //                 datasets: [{
-    //                     label: 'number of items sold',
-    //                     data: data.data,
-    //                     backgroundColor: () => {
-    //                          //generates random colours and puts them in string
+    $.ajax({
+        type: "GET",
+        url: "/api/dashboard/items-chart",
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            var ctx = $("#itemsChart");
+            var myBarChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'number of items sold',
+                        data: data.data,
+                        backgroundColor: () => {
+                             //generates random colours and puts them in string
                             
-    //                          var colors = [];
-    //                         for (var i = 0; i < data.data.length; i++) {
-    //                           var letters = '0123456789ABCDEF'.split('');
-    //                           var color = '#';
-    //                           for (var x = 0; x < 6; x++) {
-    //                             color += letters[Math.floor(Math.random() * 16)];
-    //                           }
-    //                           colors.push(color);
-    //                         }
-    //                         return colors;
-    //                       },
-    //                     borderColor: [
-    //                         'rgba(75, 192, 192, 1)',
-    //                         'rgba(255,99,132,1)'
-    //                     ],
-    //                     borderWidth: 1,
-    //                     responsive: true,
-    //                     // hoverBackgroundColor: colors,
-    //                 }]
-    //             },
+                             var colors = [];
+                            for (var i = 0; i < data.data.length; i++) {
+                              var letters = '0123456789ABCDEF'.split('');
+                              var color = '#';
+                              for (var x = 0; x < 6; x++) {
+                                color += letters[Math.floor(Math.random() * 16)];
+                              }
+                              colors.push(color);
+                            }
+                            return colors;
+                          },
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255,99,132,1)'
+                        ],
+                        borderWidth: 1,
+                        responsive: true,
+                        // hoverBackgroundColor: colors,
+                    }]
+                },
                 
-    //         });
+            });
             
-    //     },
-    //     error: function (error) {
-    //         console.log(error);
-    //     }
-    // });
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
 });

@@ -35,4 +35,21 @@ class DashboardController extends Controller
         // dd($sales, $data, $labels);
         return response()->json(array('data' => $data, 'labels' => $labels));
     }
+
+    public function itemsChart() {
+        
+        $items = DB::table('item as i')
+                    ->join('orderline as ol', 'i.item_id', '=', 'ol.item_id')
+                    ->select(DB::raw('i.description as items, sum(ol.quantity) as total'))
+                    ->groupBy('i.description')
+                    ->pluck('total','items')
+                    ->all();
+                    
+        // dd($items);
+        $labels = (array_keys($items));
+        
+        $data= array_values($items);
+        // dd($items, $data, $labels);
+        return response()->json(array('data' => $data, 'labels' => $labels));
+    }
 }
