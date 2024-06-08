@@ -15,6 +15,7 @@ $(document).ready(function () {
                     $("#iform").trigger("reset");
                     $('#itemModal').modal('show');
                     $('#itemUpdate').hide();
+                    $('#itemImage').remove()
                 }
             }
         ],

@@ -86,8 +86,6 @@ $(document).ready(function () {
                    $("#phone").val(data.phone); 
                    $("#email").val(data.user.email);
                    $("#cform").append(`<img src=" ${data.image_path}" width='200px', height='200px' id="image"   />`)
-                   
-                   
               },
              error: function(){
               console.log('AJAX load did not work');

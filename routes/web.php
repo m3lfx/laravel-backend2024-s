@@ -19,3 +19,4 @@ Route::get('/', function () {
 
 Route::view('/customer-all', 'customer.index');
 Route::view('/item', 'item.index');
+Route::view('/dashboard', 'dashboard.index');
