@@ -75,7 +75,7 @@ $(document).ready(function () {
 
     $('#itable tbody').on('click', 'a.editBtn', function (e) {
         e.preventDefault();
-        // $('#itemImage').remove()
+        $('#itemImage').remove()
         $("#iform").trigger("reset");
         var id = $(this).data('id');
         $('#itemModal').modal('show');
@@ -100,5 +100,7 @@ $(document).ready(function () {
             }
         });
     });
+
+    
 })
 
