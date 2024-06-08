@@ -142,5 +142,47 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('#itable tbody').on('click', 'a.deletebtn', function (e) {
+        e.preventDefault();
+        var table = $('#itable').DataTable();
+        var id = $(this).data('id');
+        var $row = $(this).closest('tr');
+        console.log(id);
+        bootbox.confirm({
+            message: "do you want to delete this item",
+            buttons: {
+                confirm: {
+                    label: 'yes',
+                    className: 'btn-success'
+                },
+                cancel: {
+                    label: 'no',
+                    className: 'btn-danger'
+                }
+            },
+            callback: function (result) {
+                console.log(result);
+                if (result)
+                    $.ajax({
+                        type: "DELETE",
+                        url: `http://localhost:8000/api/items/${id}`,
+                        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data);
+                            $row.fadeOut(4000, function () {
+                                table.row($row).remove().draw();
+                            });
+
+                            bootbox.alert(data.success);
+                        },
+                        error: function (error) {
+                            bootbox.alert(data.error);
+                        }
+                    });
+            }
+        });
+    })
 })
 

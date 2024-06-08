@@ -36,11 +36,11 @@ class ItemController extends Controller
         $item->sell_price = $request->sell_price;
         $item->cost_price = $request->cost_price;
         $files = $request->file('uploads');
-        $item->img_path = 'storage/images/'.$files->getClientOriginalName();
+        $item->img_path = 'storage/images/' . $files->getClientOriginalName();
         $item->save();
-        
-        Storage::put('public/images/'.$files->getClientOriginalName(),file_get_contents($files));
-        return response()->json(["success" => "item created successfully.","item" => $item,"status" => 200]);
+
+        Storage::put('public/images/' . $files->getClientOriginalName(), file_get_contents($files));
+        return response()->json(["success" => "item created successfully.", "item" => $item, "status" => 200]);
     }
 
     /**
@@ -72,11 +72,11 @@ class ItemController extends Controller
         $item->cost_price = $request->cost_price;
         // $item->image_path = 'default.jpg';
         $files = $request->file('uploads');
-        $item->img_path = 'storage/images/'.$files->getClientOriginalName();
+        $item->img_path = 'storage/images/' . $files->getClientOriginalName();
         $item->save();
-        
-        Storage::put('public/images/'.$files->getClientOriginalName(),file_get_contents($files));
-        return response()->json(["success" => "item updated successfully.","item" => $item,"status" => 200]);
+
+        Storage::put('public/images/' . $files->getClientOriginalName(), file_get_contents($files));
+        return response()->json(["success" => "item updated successfully.", "item" => $item, "status" => 200]);
     }
 
     /**
@@ -84,6 +84,14 @@ class ItemController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+
+
+        if (Item::find($id)) {
+            Item::destroy($id);
+            $data = array('success' => 'deleted', 'code' => 200);
+            return response()->json($data);
+        }
+        $data = array('error' => 'item not deleted', 'code' => 400);
+        return response()->json($data);
     }
 }
