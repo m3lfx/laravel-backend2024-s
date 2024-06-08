@@ -65,7 +65,18 @@ class ItemController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $item = Item::find($id);
+        // dd($request->all(), $id);
+        $item->description = $request->description;
+        $item->sell_price = $request->sell_price;
+        $item->cost_price = $request->cost_price;
+        // $item->image_path = 'default.jpg';
+        $files = $request->file('uploads');
+        $item->img_path = 'storage/images/'.$files->getClientOriginalName();
+        $item->save();
+        
+        Storage::put('public/images/'.$files->getClientOriginalName(),file_get_contents($files));
+        return response()->json(["success" => "item updated successfully.","item" => $item,"status" => 200]);
     }
 
     /**
