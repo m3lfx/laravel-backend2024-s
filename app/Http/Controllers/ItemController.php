@@ -48,7 +48,8 @@ class ItemController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $item = Item::where('item_id', $id)->first();
+        return response()->json($item);
     }
 
     /**

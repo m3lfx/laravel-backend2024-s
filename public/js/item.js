@@ -28,12 +28,12 @@ $(document).ready(function () {
                     return `<img src=${data.img_path}  width="50" height="60">`;
                 }
             },
-            
+
             { data: 'description' },
             { data: 'cost_price' },
             { data: 'sell_price' },
-           
-            
+
+
             {
                 data: null,
                 render: function (data, type, row) {
@@ -66,6 +66,34 @@ $(document).ready(function () {
                 var $itable = $('#itable').DataTable();
                 // $itable.row.add(data.results).draw(false);
                 $itable.ajax.reload()
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
+
+    $('#itable tbody').on('click', 'a.editBtn', function (e) {
+        e.preventDefault();
+        // $('#itemImage').remove()
+        $("#iform").trigger("reset");
+        var id = $(this).data('id');
+        $('#itemModal').modal('show');
+        $('#itemSubmit').hide()
+        $('#itemUpdate').show()
+
+        $.ajax({
+            type: "GET",
+            url: `http://localhost:8000/api/items/${id}`,
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                $('#desc').val(data.description)
+                $('#sell').val(data.sell_price)
+                $('#cost').val(data.cost_price)
+                $("#iform").append(`<img src=" ${data.img_path}" width='200px', height='200px' id="itemImage"   />`)
+
             },
             error: function (error) {
                 console.log(error);
