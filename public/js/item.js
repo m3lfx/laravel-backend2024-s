@@ -76,8 +76,14 @@ $(document).ready(function () {
     $('#itable tbody').on('click', 'a.editBtn', function (e) {
         e.preventDefault();
         $('#itemImage').remove()
+        $('#itemId').remove()
         $("#iform").trigger("reset");
+        // var id = $(e.relatedTarget).attr('data-id');
+        console.log(id);
+
+       
         var id = $(this).data('id');
+        $('<input>').attr({ type: 'hidden', id: 'itemId', name: 'item_id', value: id }).appendTo('#iform');
         $('#itemModal').modal('show');
         $('#itemSubmit').hide()
         $('#itemUpdate').show()
@@ -101,6 +107,40 @@ $(document).ready(function () {
         });
     });
 
-    
+    $("#itemUpdate").on('click', function (e) {
+        e.preventDefault();
+        var id = $('#itemId').val();
+        console.log(id);
+        var table = $('#itable').DataTable();
+        // var cRow = $("tr td:eq(" + id + ")").closest('tr');
+        var data = $('#iform')[0];
+        let formData = new FormData(data);
+        formData.append("_method", "PUT")
+        // // var formData = $("#cform").serialize();
+        // console.log(formData);
+        // formData.append('_method', 'PUT')
+        // for (var pair of formData.entries()) {
+        //     console.log(pair[0] + ', ' + pair[1]);
+        // }
+        $.ajax({
+            type: "POST",
+            url: `http://localhost:8000/api/items/${id}`,
+            data: formData,
+            contentType: false,
+            processData: false,
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                $('#itemModal').modal("hide");
+
+                table.ajax.reload()
+
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    });
 })
 
