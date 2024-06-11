@@ -24,4 +24,15 @@ $(document).ready(function () {
 			alert("error");
 		}
 	});
+
+    $("#items").on('click', '.add', function () {
+		itemCount++;
+		$('#itemCount').text(itemCount).css('display', 'block');
+		clone = $(this).siblings().clone().appendTo('#cartItems')
+			.append('<button class="removeItem">Remove Item</button>');
+		// Calculate Total Price
+		var price = parseInt($(this).siblings().find('.price').text());
+		priceTotal += price;
+		$('#cartTotal').text("Total: php" + priceTotal);
+	});
 })
