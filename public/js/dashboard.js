@@ -105,7 +105,6 @@ $(document).ready(function () {
                     datasets: [{
                         label: 'number of items sold',
                         data: data.data,
-                       
                         backgroundColor: () => {
                             //generates random colours and puts them in string
 
