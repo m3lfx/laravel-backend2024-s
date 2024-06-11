@@ -12,6 +12,7 @@
  </head>
  <body>
  @yield('body')
- @include('layouts.scripts')
+
  </body>
+ @include('layouts.scripts')
  </html>

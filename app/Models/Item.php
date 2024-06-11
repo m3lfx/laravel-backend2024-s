@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Stock;
 class Item extends Model
 {
     use HasFactory;
@@ -14,4 +14,8 @@ class Item extends Model
     'cost_price',
     'sell_price',
     'image_path'];
+    public function stock()
+    {
+        return $this->hasOne(Stock::class,'item_id');
+    }
 }

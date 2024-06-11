@@ -13,8 +13,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        // $items = Item::with('stock')->get();
-        $items = Item::orderBy('item_id', 'DESC')->get();
+        $items = Item::withWhereHas('stock')->get();
+        // $items = Item::orderBy('item_id', 'DESC')->get();
         return response()->json($items);
     }
 
