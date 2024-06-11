@@ -58,4 +58,13 @@ $(document).ready(function () {
             $('#shoppingCart').hide();
 		}
 	});
+
+    $('#emptyCart').click(function () {
+		itemCount = 0;
+		priceTotal = 0;
+
+		$('#itemCount').css('display', 'none');
+		$('#cartItems').text('');
+		$('#cartTotal').text("Total: php" + priceTotal);
+	});
 })
