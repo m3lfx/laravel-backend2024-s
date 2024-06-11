@@ -35,4 +35,11 @@ $(document).ready(function () {
 		priceTotal += price;
 		$('#cartTotal').text("Total: php" + priceTotal);
 	});
+
+    $('.openCloseCart').click(function () {
+		$('#shoppingCart').show();
+	});
+    $('#close').click(function () {
+		$('#shoppingCart').hide();
+	});
 })
