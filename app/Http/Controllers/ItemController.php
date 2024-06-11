@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Models\Stock;
+use App\Models\Customer;
 use Storage;
+use Carbon\Carbon;
+use App\Models\Order;
+use DB;
 
 class ItemController extends Controller
 {
@@ -93,5 +98,61 @@ class ItemController extends Controller
         }
         $data = array('error' => 'item not deleted', 'code' => 400);
         return response()->json($data);
+    }
+
+    public function postCheckout(Request $request){
+    //    dd($request->getContent());
+        $items = json_decode($request->getContent(), true);
+        // dd($items);
+        try {
+            
+            DB::beginTransaction();
+            // dd(Auth::id());
+            // $customer =  Customer::where('user_id', Auth::id())->first();
+            // $customer =  Customer::where('user_id', 1)->first();
+            $order = new Order();
+            // $order->customer_id = $customer->customer_id;
+            // $order->date_placed = now();
+            $customer = Customer::find(3);
+            $order->date_placed = Carbon::now();
+            $order->date_shipped = Carbon::now();
+            $order->shipping = 10.00;
+            $order->status = 'Processing';
+            // $order->save();
+            // $order->customer()->;
+            $customer->orders()->save($order);
+            // dd($customer->orders());
+            foreach ($items as $item) {
+                // $id = $item['item_id'];
+                $order
+                    ->items()
+                    ->attach($order->orderinfo_id, [
+                        'quantity' => $item['quantity'],
+                        'item_id' => $item['item_id'],
+                    ]);
+               
+                $stock = Stock::find($item['item_id']);
+                $stock->quantity = $stock->quantity - $item['quantity'];
+                $stock->save();
+            }
+            // dd($order);
+        }
+        catch (\Exception $e) {
+            // dd($e);
+            DB::rollback();
+            return response()->json([
+                'status' => 'Order failed',
+                'code' => 409,
+                'error' => $e->getMessage(),
+            ]);
+            // return redirect()->route('shoppingCart')->with('error', $e->getMessage());
+       }
+        DB::commit();
+        // OrderCreated::dispatch($order, $customer, Auth::user()->email);
+        return response()->json([
+            'status' => 'Order Success',
+            'code' => 200,
+            'orderId' => $order->orderinfo_id,
+        ]);
     }
 }
