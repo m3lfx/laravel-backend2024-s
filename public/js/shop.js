@@ -42,4 +42,20 @@ $(document).ready(function () {
     $('#close').click(function () {
 		$('#shoppingCart').hide();
 	});
+
+    $('#shoppingCart').on('click', '.removeItem', function () {
+		$(this).parent().remove();
+		itemCount--;
+		$('#itemCount').text(itemCount);
+
+		// Remove Cost of Deleted Item from Total Price
+		var price = parseInt($(this).siblings().find('.price').text());
+		priceTotal -= price;
+		$('#cartTotal').text("Total: php" + priceTotal);
+
+		if (itemCount === 0) {
+			$('#itemCount').css('display', 'none');
+            $('#shoppingCart').hide();
+		}
+	});
 })
