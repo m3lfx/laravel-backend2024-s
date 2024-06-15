@@ -9,6 +9,7 @@ use App\Models\Customer;
 use Storage;
 use Carbon\Carbon;
 use App\Models\Order;
+
 use DB;
 
 class ItemController extends Controller
@@ -43,6 +44,12 @@ class ItemController extends Controller
         $files = $request->file('uploads');
         $item->img_path = 'storage/images/' . $files->getClientOriginalName();
         $item->save();
+
+        $stock = new Stock();
+        $stock->item_id = $item->item_id;
+        $stock->quantity = $request->quantity;
+        $stock->save();
+        
 
         Storage::put('public/images/' . $files->getClientOriginalName(), file_get_contents($files));
         return response()->json(["success" => "item created successfully.", "item" => $item, "status" => 200]);

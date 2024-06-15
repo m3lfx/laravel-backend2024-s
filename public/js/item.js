@@ -33,6 +33,7 @@ $(document).ready(function () {
             { data: 'description' },
             { data: 'cost_price' },
             { data: 'sell_price' },
+            { data: 'stock.quantity' },
 
 
             {

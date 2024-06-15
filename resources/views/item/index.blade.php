@@ -14,6 +14,7 @@
          <th>description</th>
          <th>sell price</th>
          <th>cost price</th>
+         <th>quantity</th>
          <th>action</th>
          
          </tr>
@@ -46,6 +47,10 @@
                <label for="cost" class="control-label">Cost Price</label>
                <input type="text" class="form-control " id="cost" name="cost_price" >
              </div>
+             <div class="form-group"> 
+              <label for="qty" class="control-label">quantity</label>
+              <input type="text" class="form-control " id="qty" name="quantity" >
+            </div>
              <div class="form-group"> 
                <label for="image" class="control-label">Image</label>
                <input type="file" class="form-control" id="image" name="uploads" />
