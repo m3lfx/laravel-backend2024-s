@@ -31,7 +31,7 @@ $(document).ready(function () {
 		clone = $(this).siblings().clone().appendTo('#cartItems')
 			.append('<button class="removeItem">Remove Item</button>');
 		// Calculate Total Price
-		var price = parseInt($(this).siblings().find('.price').text());
+		var price = parseFloat($(this).siblings().find('.price').text());
 		priceTotal += price;
 		$('#cartTotal').text("Total: php" + priceTotal);
 	});
